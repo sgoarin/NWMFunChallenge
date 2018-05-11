@@ -14,7 +14,7 @@ export class GetThoseBeastsService {
 
   constructor(private http: HttpClient) { }
 
-  getTheBeasts(term: string): Observable<string[]> {
+  getTheBeasts(): Observable<string[]> {
       return this.http.get<string[]>(`${this.url}`)
         .pipe(
         tap(projects => console.log("fetched projects")),

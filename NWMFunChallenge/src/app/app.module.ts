@@ -6,21 +6,27 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { GetThoseBeastsComponent } from './get-those-beasts/get-those-beasts.component';
 import { GetThoseBeastsService } from './get-those-beasts.service';
+import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 
 import { Interceptor } from './classes/interceptor';
 import { ConfigurationService } from './configuration.service';
-
+import { FilterPipe } from './classes/FilterPipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    GetThoseBeastsComponent
+    GetThoseBeastsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [GetThoseBeastsService    //ConfigurationService,
     //{

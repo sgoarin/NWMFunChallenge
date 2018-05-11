@@ -11,15 +11,16 @@ import { BeastApi } from '../classes/BeastApi';
 export class GetThoseBeastsComponent implements OnInit {
 
   constructor(private getThoseBeastsService: GetThoseBeastsService) { }
-
+  searchText: string;
   public categories: string[] = [];
 
   ngOnInit() {
-    this.getTheBeasts("");
+    this.getTheBeasts();
   }
 
-  getTheBeasts(term: string) {
-    this.getThoseBeastsService.getTheBeasts(term).subscribe
+  getTheBeasts() {
+    
+    this.getThoseBeastsService.getTheBeasts().subscribe
       (
       res => {
         this.categories = res;
