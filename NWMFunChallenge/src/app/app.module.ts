@@ -9,6 +9,7 @@ import { GetThoseBeastsService } from './get-those-beasts.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { Interceptor } from './classes/interceptor';
+import { ConfigurationService } from './configuration.service';
 
 
 @NgModule({
@@ -21,13 +22,12 @@ import { Interceptor } from './classes/interceptor';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [GetThoseBeastsService,
-    ConfigurationService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
-      multi: true
-    },
+  providers: [GetThoseBeastsService    //ConfigurationService,
+    //{
+    //  provide: HTTP_INTERCEPTORS,
+    //  useClass: Interceptor,
+    //  multi: true
+    //},
 
 
   ],

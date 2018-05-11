@@ -1,2 +1,2 @@
-ng serve --proxy-config proxy.config.json
+ng serve --open
 pause

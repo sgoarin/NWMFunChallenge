@@ -10,12 +10,12 @@ import { BeastApi } from './classes/BeastApi';
 export class GetThoseBeastsService {
 
   beastApi: BeastApi;
-  url: string = "/entries?category=animals&https=true";
+  url: string = "https://api.publicapis.org/categories";
 
   constructor(private http: HttpClient) { }
 
-  getTheBeasts(term: string): Observable<BeastApi[]> {
-      return this.http.get<BeastApi[]>(`${this.url}/getprojects`)
+  getTheBeasts(term: string): Observable<string[]> {
+      return this.http.get<string[]>(`${this.url}`)
         .pipe(
         tap(projects => console.log("fetched projects")),
         catchError(this.handleError('getProjects', []))

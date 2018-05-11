@@ -4,7 +4,7 @@
   <div class="col-md-5"><h4 class="greyTitle">My projects</h4></div>
 
   <div class="col-md-4">
-    <input #searchBox (keyup)="getProjects(searchBox.value)" type="text" class="form-control float-right" placeholder="Search">
+    <input #searchBox (keyup)="getTheBeasts(searchBox.value)" type="text" class="form-control float-right" placeholder="Search">
   </div>
 </div>
 
@@ -14,24 +14,12 @@
     <table class="table table-hover">
       <thead>
         <tr class="row">
-          <th scope="col" class="col-6">API</th>
-          <th scope="col" class="col-6">Description</th>
-          <th scope="col" class="col-6">Auth</th>
-          <th scope="col" class="col-6">HTTPS</th>
-          <th scope="col" class="col-6">Cors</th>
-          <th scope="col" class="col-6">Link</th>
           <th scope="col" class="col-6">Category</th>
-        </tr>
+                  </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let beastApi of beastApis" class="row">
-          <td class="col-6">{{beastApi.Api}}</td>
-          <td class="col-6">{{beastApi.Description}}</td>
-          <td class="col-6">{{beastApi.Auth}}</td>
-          <td class="col-6">{{beastApi.HTTPS}}</td>
-          <td class="col-6">{{beastApi.Cors}}</td>
-          <td class="col-6">{{beastApi.Link}}</td>
-          <td class="col-6">{{beastApi.Category}}</td>
+        <tr *ngFor="let category of categories" class="row">
+          <td class="col-6">{{category}}</td>
         </tr>
       </tbody>
     </table>

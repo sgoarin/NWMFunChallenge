@@ -12,7 +12,7 @@ export class GetThoseBeastsComponent implements OnInit {
 
   constructor(private getThoseBeastsService: GetThoseBeastsService) { }
 
-  public beastApis: BeastApi[] = [];
+  public categories: string[] = [];
 
   ngOnInit() {
     this.getTheBeasts("");
@@ -22,8 +22,8 @@ export class GetThoseBeastsComponent implements OnInit {
     this.getThoseBeastsService.getTheBeasts(term).subscribe
       (
       res => {
-        this.beastApis = res;
-        console.log(this.beastApis);
+        this.categories = res;
+        console.log(this.categories);
 
         //this.spinnerService.hide();
       },

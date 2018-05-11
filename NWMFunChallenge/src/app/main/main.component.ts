@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GetThoseBeastsService } from '../get-those-beasts.service';
+import { BeastApi } from '../classes/BeastApi';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gtbservice: GetThoseBeastsService) {  }
+
+  public beastApis: BeastApi[] = [];
 
   ngOnInit() {
+    //this.getTheBeasts("");
   }
+
+  //getTheBeasts(term:string) {
+  //  this.gtbservice.getTheBeasts(term).subscribe
+  //    (
+  //    res => {
+  //      this.beastApis = res;
+  //      console.log(this.beastApis);
+
+  //      //this.spinnerService.hide();
+  //    },
+
+  //    error => {
+  //      console.log("error =" + error);
+  //      //this.spinnerService.hide();
+  //    });
+  //}
 
 }

@@ -1,5 +1,5 @@
 {
-  "/api/*": {
+  "/*": {
     "target": "https://api.publicapis.org", 
     "secure": false,
     "logLevel": "debug", 

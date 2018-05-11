@@ -28,7 +28,7 @@ export class Interceptor implements HttpInterceptor {
     //}
     //else {
       this.newReq = req.clone({
-        url: "api/" + req.url
+        url: req.url
       });
     //}
 
