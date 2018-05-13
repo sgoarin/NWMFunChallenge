@@ -18,6 +18,7 @@ export class GetThoseBeastsComponent implements OnInit {
 
   startIndex: number = 0;
   endIndex: number = 10;
+  numberOfrecords : number = 10;
 
   ngOnInit() {
     this.getTheBeasts();
@@ -31,7 +32,7 @@ export class GetThoseBeastsComponent implements OnInit {
         this.categories = res;
         console.log(res);
         if (this.categories) {
-          if (this.categories.length < 10) {
+          if (this.categories.length < this.numberOfrecords) {
             this.endIndex = this.categories.length;
           }
         }
@@ -52,7 +53,7 @@ export class GetThoseBeastsComponent implements OnInit {
       this.startIndex = this.endIndex;
     }
     
-    if (this.categories.length < 10) {
+    if (this.categories.length < this.numberOfrecords) {
       this.endIndex = this.categories.length;
     }
     else {
@@ -62,8 +63,8 @@ export class GetThoseBeastsComponent implements OnInit {
   }
 
   back() {
-    this.startIndex = this.startIndex - 10;
-    this.endIndex = this.endIndex - 10;
+    this.startIndex = this.startIndex - this.numberOfrecords;
+    this.endIndex = this.endIndex - this.numberOfrecords;
     this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
   }
 }
