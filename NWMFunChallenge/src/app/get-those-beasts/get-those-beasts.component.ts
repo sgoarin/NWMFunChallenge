@@ -103,6 +103,7 @@ export class GetThoseBeastsComponent implements OnInit {
            
           }
           else {
+            searchText = searchText.toLowerCase();
             this.searchActive = true;
             this.searchResults = this.categories.filter(cat => {
               return cat.toLowerCase().startsWith(searchText)
@@ -110,7 +111,9 @@ export class GetThoseBeastsComponent implements OnInit {
             this.displayedRecords = this.searchResults.slice(0, 10);
           }
 
-          if (this.searchResults.length <= this.endIndex) { this.nextEnabled = false; }
+          this.backEnabled = false;
+          if (this.searchResults.length <= this.endIndex)
+          { this.nextEnabled = false; }
             else { this.nextEnabled = true; }
         }
          
