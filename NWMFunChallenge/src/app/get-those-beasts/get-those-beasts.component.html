@@ -4,7 +4,7 @@
   <div class="col-md-7"><h4 class="greyTitle">My projects</h4></div>
 
   <div class="col-md-3">
-    <input  [(ngModel)]="searchText" type="text" class="form-control float-right" placeholder="Search">
+    <input  [(ngModel)]="searchText" type="text" class="form-control float-right" placeholder="Search" #searchBox (keyup)="search(searchBox.value)">
   </div>
 </div>
 
@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let category of displayedRecords | filter : searchText" class="row">
+        <tr *ngFor="let category of displayedRecords" class="row">
           <td class="col-11">{{category}}</td>
         </tr>
       </tbody>

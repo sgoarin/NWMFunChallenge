@@ -14,8 +14,8 @@ export class GetThoseBeastsService {
 
   constructor(private http: HttpClient) { }
 
-  getTheBeasts(): Observable<string[]> {
-      return this.http.get<string[]>(`${this.url}`)
+  getTheBeasts(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.url}`)
         .pipe(
         tap(projects => console.log("fetched projects")),
         catchError(this.handleError('getProjects', []))

@@ -18,14 +18,14 @@ export class GetThoseBeastsComponent implements OnInit {
 
   startIndex: number = 0;
   endIndex: number = 10;
-  numberOfrecords : number = 10;
+  numberOfrecords: number = 10;
 
   ngOnInit() {
     this.getTheBeasts();
   }
 
   getTheBeasts() {
-    
+
     this.getThoseBeastsService.getTheBeasts().subscribe
       (
       res => {
@@ -52,7 +52,7 @@ export class GetThoseBeastsComponent implements OnInit {
     if (this.categories.length > this.endIndex + 1) {
       this.startIndex = this.endIndex;
     }
-    
+
     if (this.categories.length < this.numberOfrecords) {
       this.endIndex = this.categories.length;
     }
@@ -67,4 +67,61 @@ export class GetThoseBeastsComponent implements OnInit {
     this.endIndex = this.endIndex - this.numberOfrecords;
     this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
   }
-}
+
+  search(searchText: string) {
+
+    
+
+      console.log("search = " + searchText);
+
+    this.getThoseBeastsService.getTheBeasts().subscribe
+      (
+      res => {
+        this.categories = res;
+
+        if (!searchText) {
+
+          this.displayedRecords =  this.categories;
+        }
+
+        if (this.categories) {
+          
+          this.displayedRecords = this.categories.filter(cat => {
+            return cat.toLowerCase().startsWith(searchText)
+          });
+          console.log(this.displayedRecords);
+        }
+
+        //this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+
+        //this.spinnerService.hide();
+      },
+
+      error => {
+        console.log("error =" + error);
+        //this.spinnerService.hide();
+      });
+
+    }
+    //this.getThoseBeastsService.getTheBeasts().subscribe
+    //  (
+    //  res => {
+    //    this.categories = res;
+
+    //    this.displayedRecords.filter(cat => {
+    //      cat.toLowerCase().contains(searchText)
+    //    });
+    //  },
+        //console.log("results =" + this.displayedRecords);
+        //if (this.categories) {
+        //  if (this.categories.length < this.numberOfrecords) {
+        //    this.endIndex = this.categories.length;
+        //  }
+        //}
+
+        //this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+
+      
+  }
+
+
