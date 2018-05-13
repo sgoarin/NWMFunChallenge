@@ -14,6 +14,11 @@ export class GetThoseBeastsComponent implements OnInit {
   searchText: string;
   public categories: string[] = [];
 
+  public displayedRecords: string[] = [];
+
+  startIndex: number = 0;
+  endIndex: number = 10;
+
   ngOnInit() {
     this.getTheBeasts();
   }
@@ -24,7 +29,14 @@ export class GetThoseBeastsComponent implements OnInit {
       (
       res => {
         this.categories = res;
-        console.log(this.categories);
+        console.log(res);
+        if (this.categories) {
+          if (this.categories.length < 10) {
+            this.endIndex = this.categories.length;
+          }
+        }
+
+        this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
 
         //this.spinnerService.hide();
       },
@@ -35,4 +47,23 @@ export class GetThoseBeastsComponent implements OnInit {
       });
   }
 
+  next() {
+    if (this.categories.length > this.endIndex + 1) {
+      this.startIndex = this.endIndex;
+    }
+    
+    if (this.categories.length < 10) {
+      this.endIndex = this.categories.length;
+    }
+    else {
+      this.endIndex = this.endIndex + 10;
+    }
+    this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+  }
+
+  back() {
+    this.startIndex = this.startIndex - 10;
+    this.endIndex = this.endIndex - 10;
+    this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+  }
 }

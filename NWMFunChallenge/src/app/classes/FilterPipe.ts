@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(categories: string[], searchText: any): string[] {
+  transform(categories: any[], searchText: any): any[] {
     if (!categories) return [];
     if (!searchText) return categories;
     searchText = searchText.toLowerCase();

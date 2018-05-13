@@ -18,13 +18,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let category of categories | filter : searchText" class="row">
+        <tr *ngFor="let category of displayedRecords | filter : searchText" class="row">
           <td class="col-11">{{category}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-1"><button type="button" (click) ="back()">Back</button></div>
+    <div class="col-md-10"></div>
+    <div class="col-md-1"><button type="button" (click)="next()">Next</button></div>
+  </div>
+  
 
 <!--Small-->
 <!--<div class="d-md-none">
