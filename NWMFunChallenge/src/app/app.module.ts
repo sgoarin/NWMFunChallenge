@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { CommonModule } from '@angular/common';  
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { GetThoseBeastsComponent } from './get-those-beasts/get-those-beasts.component';
@@ -26,7 +26,8 @@ import { FilterPipe } from './classes/FilterPipe';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [GetThoseBeastsService    //ConfigurationService,
     //{

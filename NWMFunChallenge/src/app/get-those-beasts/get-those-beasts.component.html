@@ -3,8 +3,12 @@
   <div class="col-md-1"></div>
   <div class="col-md-7"><h4 class="greyTitle">My projects</h4></div>
 
-  <div class="col-md-3">
-    <input  [(ngModel)]="searchText" type="text" class="form-control float-right" placeholder="Search" #searchBox (keyup)="search(searchBox.value)">
+  <div class="col-md-2">
+    <!--<input [(ngModel)]="searchText" type="text" class="form-control float-right" placeholder="Search" #searchBox (keyup)="search(searchBox.value)">-->
+    <input type="text" class="form-control float-right" placeholder="Search" #searchBox />
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-info" (click)="search(searchBox.value)">Search</button>
   </div>
 </div>
 
@@ -25,11 +29,11 @@
     </table>
   </div>
 </div>
-  <div class="row">
-    <div class="col-md-1"><button type="button" (click) ="back()">Back</button></div>
-    <div class="col-md-10"></div>
-    <div class="col-md-1"><button type="button" (click)="next()">Next</button></div>
-  </div>
+<div class="row fixed-bottom mb-3 ml-2">
+  <div class="col-md-1 "><button *ngIf="backEnabled"  class="btn btn-secondary" type="button" (click)="back()">&laquo; Previous</button></div>
+  <div class="col-md-10"></div>
+  <div class="col-md-1"><button *ngIf="nextEnabled" class="btn btn-primary" type="button" (click)="next()">Next &raquo;</button></div>
+</div>
   
 
 <!--Small-->

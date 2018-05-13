@@ -11,90 +11,109 @@ import { BeastApi } from '../classes/BeastApi';
 export class GetThoseBeastsComponent implements OnInit {
 
   constructor(private getThoseBeastsService: GetThoseBeastsService) { }
-  searchText: string;
-  public categories: string[] = [];
 
+  public categories: string[] = [];
   public displayedRecords: string[] = [];
+  public searchResults: string[] = [];
+  searchActive: boolean = false;
+  
+  backEnabled: boolean = false;
+  nextEnabled: boolean = true;
 
   startIndex: number = 0;
   endIndex: number = 10;
   numberOfrecords: number = 10;
 
   ngOnInit() {
-    this.getTheBeasts();
+    this.getData();
   }
 
-  getTheBeasts() {
-
-    this.getThoseBeastsService.getTheBeasts().subscribe
-      (
-      res => {
-        this.categories = res;
-        console.log(res);
-        if (this.categories) {
+  getData() {
+      
+      this.getThoseBeastsService.getTheBeasts().subscribe
+        (
+        res => {
+          this.categories = res;
           if (this.categories.length < this.numberOfrecords) {
             this.endIndex = this.categories.length;
           }
-        }
+          this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
 
-        this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+          //this.spinnerService.hide();
+        },
 
-        //this.spinnerService.hide();
-      },
-
-      error => {
-        console.log("error =" + error);
-        //this.spinnerService.hide();
-      });
-  }
+        error => {
+          console.log("error =" + error);
+          //this.spinnerService.hide();
+        });
+   }
 
   next() {
-    if (this.categories.length > this.endIndex + 1) {
+
+    if (!this.searchActive) {
+      this.searchResults = this.categories;
+    }
+
+    if (this.searchResults.length > this.endIndex + 1) {
       this.startIndex = this.endIndex;
     }
 
-    if (this.categories.length < this.numberOfrecords) {
-      this.endIndex = this.categories.length;
+    if (this.searchResults.length < this.numberOfrecords) {
+      this.endIndex = this.searchResults.length;
     }
     else {
       this.endIndex = this.endIndex + 10;
     }
-    this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+
+    this.backEnabled = true;
+    this.displayedRecords = this.searchResults.slice(this.startIndex, this.endIndex);
+
+    if (this.searchResults.length <= this.endIndex)
+    { this.nextEnabled = false; }
+    else
+    { this.nextEnabled = true; }
   }
 
   back() {
     this.startIndex = this.startIndex - this.numberOfrecords;
     this.endIndex = this.endIndex - this.numberOfrecords;
-    this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
+
+    if (this.startIndex == 0)
+      this.backEnabled = false;
+
+    if (this.searchResults.length <= this.endIndex) { this.nextEnabled = false; }
+    else { this.nextEnabled = true; }
+
+    this.displayedRecords = this.searchResults.slice(this.startIndex, this.endIndex);
   }
 
   search(searchText: string) {
-
-    
-
-      console.log("search = " + searchText);
-
     this.getThoseBeastsService.getTheBeasts().subscribe
       (
       res => {
         this.categories = res;
-
-        if (!searchText) {
-
-          this.displayedRecords =  this.categories;
-        }
-
         if (this.categories) {
-          
-          this.displayedRecords = this.categories.filter(cat => {
-            return cat.toLowerCase().startsWith(searchText)
-          });
-          console.log(this.displayedRecords);
+          if (!searchText) {
+            this.searchResults = this.categories;
+
+            this.searchActive = false;
+            this.startIndex = 0;
+            this.endIndex = 10;
+            this.displayedRecords = this.searchResults.slice(this.startIndex, this.endIndex);
+           
+          }
+          else {
+            this.searchActive = true;
+            this.searchResults = this.categories.filter(cat => {
+              return cat.toLowerCase().startsWith(searchText)
+            });
+            this.displayedRecords = this.searchResults.slice(0, 10);
+          }
+
+          if (this.searchResults.length <= this.endIndex) { this.nextEnabled = false; }
+            else { this.nextEnabled = true; }
         }
-
-        //this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
-
-        //this.spinnerService.hide();
+         
       },
 
       error => {
@@ -102,26 +121,9 @@ export class GetThoseBeastsComponent implements OnInit {
         //this.spinnerService.hide();
       });
 
-    }
-    //this.getThoseBeastsService.getTheBeasts().subscribe
-    //  (
-    //  res => {
-    //    this.categories = res;
+  }
 
-    //    this.displayedRecords.filter(cat => {
-    //      cat.toLowerCase().contains(searchText)
-    //    });
-    //  },
-        //console.log("results =" + this.displayedRecords);
-        //if (this.categories) {
-        //  if (this.categories.length < this.numberOfrecords) {
-        //    this.endIndex = this.categories.length;
-        //  }
-        //}
-
-        //this.displayedRecords = this.categories.slice(this.startIndex, this.endIndex);
-
-      
+  
   }
 
 
