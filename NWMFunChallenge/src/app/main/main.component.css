@@ -1,15 +1,24 @@
 .nwm {
   background-color: #00487c;
   color: white;
-  
-}
-
-.nwmft {
   font-size: 2em;
 }
 
-@media only screen and (max-width: 768px) {
-  .nwmft {
+@media screen and (max-width: 375px)
+and (orientation:portrait)
+{
+  .nwm {
+    background-color: #00487c;
+    color: white;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 812px)  {
+  .nwm {
+    background-color: #00487c;
+    color: white;
     font-size: 1.5em;
   }
 }
+
