@@ -1,23 +1,23 @@
 <!--Medium-->
-<div class="row d-none d-md-flex mt-md-5">
-  <div class="col-md-1"></div>
-  <div class="col-md-7"><h4 class="greyTitle">My projects</h4></div>
+<div class="row mt-5">
+  <div class="col-1"></div>
+  <div class="col-7"><h4 class="greyTitle">Categories</h4></div>
 
-  <div class="col-md-2">
+  <div class="col-2">
     <input type="text" class="form-control float-right" placeholder="Search" #searchBox (keyup)="reset(searchBox.value)"/>
   </div>
-  <div class="col-md-2">
+  <div class="col-2">
     <button type="button" class="btn btn-info" (click)="search(searchBox.value)">Search</button>
   </div>
 </div>
 
-<div class="row d-none d-md-flex mt-5">
-  <div class="col-md-1"></div>
-  <div class="col-md-11">
+<div class="row d-flex mt-4">
+  <div class="col-1"></div>
+  <div class="col-11">
     <table class="table table-hover">
       <thead>
         <tr class="row">
-          <th scope="col" class="col-11"><a href="#" (click)="sort()">Category</a></th>
+          <th scope="col" class="col-11"><a href="#" (click)="sort()">Name</a></th>
         </tr>
       </thead>
       <tbody>
@@ -28,10 +28,11 @@
     </table>
   </div>
 </div>
-<div class="row fixed-bottom mb-3 ml-2">
-  <div class="col-md-1 "><button *ngIf="backEnabled"  class="btn btn-secondary" type="button" (click)="back()">&laquo; Previous</button></div>
-  <div class="col-md-10"></div>
-  <div class="col-md-1"><button *ngIf="nextEnabled" class="btn btn-primary" type="button" (click)="next()">Next &raquo;</button></div>
+<div class="row fixed-bottom d-flex mb-4">
+  <div class="col-2"></div>
+  <div class="col-1"><button *ngIf="backEnabled" class="btn btn-secondary btn-sm" type="button" (click)="back()">&laquo; Previous</button></div>
+  <div class="col-7"></div>
+  <div class="col-1"><button *ngIf="nextEnabled" class="btn btn-primary  btn-sm" type="button" (click)="next()">Next &raquo;</button></div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 
