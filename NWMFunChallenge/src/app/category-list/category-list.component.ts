@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { GetThoseBeastsService } from '../get-those-beasts.service';
-import { BeastApi } from '../classes/BeastApi';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-get-those-beasts',
-  templateUrl: './get-those-beasts.component.html',
-  styleUrls: ['./get-those-beasts.component.css']
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css']
 })
-export class GetThoseBeastsComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
 
-  constructor(private getThoseBeastsService: GetThoseBeastsService, private spinnerService: Ng4LoadingSpinnerService) { }
+  constructor(private dataService: DataService, private spinnerService: Ng4LoadingSpinnerService) { }
 
   public categories: string[] = [];
   public displayedRecords: string[] = [];
@@ -26,7 +25,7 @@ export class GetThoseBeastsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.show();
-    this.getThoseBeastsService.getTheBeasts().subscribe
+    this.dataService.getData().subscribe
       (
       res => {
         console.log(res);
@@ -43,7 +42,7 @@ export class GetThoseBeastsComponent implements OnInit {
     this.spinnerService.hide();
   }
 
-   next() {
+  next() {
     this.spinnerService.show();
     if (!this.searchActive) {
       this.searchResults = this.categories;
@@ -63,10 +62,8 @@ export class GetThoseBeastsComponent implements OnInit {
     this.backEnabled = true;
     this.displayData();
 
-    if (this.searchResults.length <= this.endIndex)
-    { this.nextEnabled = false; }
-    else
-    { this.nextEnabled = true; }
+    if (this.searchResults.length <= this.endIndex) { this.nextEnabled = false; }
+    else { this.nextEnabled = true; }
     this.spinnerService.hide();
   }
 
@@ -103,11 +100,10 @@ export class GetThoseBeastsComponent implements OnInit {
         });
       }
       this.displayData();
-      
+
       this.backEnabled = false;
-      if (this.searchResults.length <= this.endIndex)
-        { this.nextEnabled = false; }
-          else { this.nextEnabled = true; }
+      if (this.searchResults.length <= this.endIndex) { this.nextEnabled = false; }
+      else { this.nextEnabled = true; }
     }
     this.spinnerService.hide();
   }
@@ -130,9 +126,9 @@ export class GetThoseBeastsComponent implements OnInit {
     }
     this.startIndex = 0;
     this.endIndex = 10;
-    
+
     this.displayData();
-    
+
     this.spinnerService.hide();
   }
 
@@ -147,6 +143,6 @@ export class GetThoseBeastsComponent implements OnInit {
   }
 
 
-  }
+}
 
 

@@ -4,22 +4,21 @@ import { Observable } from 'rxjs/observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Response } from '@angular/http/src/static_response';
-import { BeastApi } from './classes/BeastApi';
+
 
 @Injectable()
-export class GetThoseBeastsService {
+export class DataService {
 
-  beastApi: BeastApi;
   url: string = "https://api.publicapis.org/categories";
 
   constructor(private http: HttpClient) { }
 
-  getTheBeasts(): Observable<any[]> {
-      return this.http.get<any[]>(`${this.url}`)
-        .pipe(
-        tap(projects => console.log("fetched projects")),
-        catchError(this.handleError('getProjects', []))
-        );
+  getData(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}`)
+      .pipe(
+      tap(projects => console.log("fetched data")),
+      catchError(this.handleError('getData', []))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
