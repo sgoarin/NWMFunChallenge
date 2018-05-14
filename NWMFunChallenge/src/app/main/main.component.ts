@@ -14,23 +14,7 @@ export class MainComponent implements OnInit {
   public beastApis: BeastApi[] = [];
 
   ngOnInit() {
-    //this.getTheBeasts("");
+    
   }
-
-  //getTheBeasts(term:string) {
-  //  this.gtbservice.getTheBeasts(term).subscribe
-  //    (
-  //    res => {
-  //      this.beastApis = res;
-  //      console.log(this.beastApis);
-
-  //      //this.spinnerService.hide();
-  //    },
-
-  //    error => {
-  //      console.log("error =" + error);
-  //      //this.spinnerService.hide();
-  //    });
-  //}
-
+   
 }
