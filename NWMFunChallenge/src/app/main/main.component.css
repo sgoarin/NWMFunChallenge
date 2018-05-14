@@ -4,7 +4,8 @@
   font-size: 2em;
 }
 
-@media screen and (max-width: 375px)
+@media screen and (min-width: 375px)
+and (max-width: 812px)
 and (orientation:portrait)
 {
   .nwm {
@@ -14,11 +15,20 @@ and (orientation:portrait)
   }
 }
 
-@media screen and (max-width: 812px)  {
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation:portrait) {
   .nwm {
     background-color: #00487c;
     color: white;
     font-size: 1.5em;
   }
 }
+
+
+/*@media screen and (max-width: 812px)  {
+  .nwm {
+    background-color: #00487c;
+    color: white;
+    font-size: 1.5em;
+  }
+}*/
 
